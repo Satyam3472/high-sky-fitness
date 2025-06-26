@@ -23,59 +23,7 @@ const initialForm = {
 };
 
 const MembersManagement = () => {
-  const [members, setMembers] = useState([
-    {
-      id: 1,
-      name: "Kumar Satyam",
-      email: "Kumar@example.com",
-      phone: "8298380149",
-      plan: "Premium",
-      joinDate: "2023-05-15",
-      expiry: "2023-11-15",
-      status: "active",
-    },
-    {
-      id: 2,
-      name: "Yash Champawat",
-      email: "Yash@example.com",
-      phone: "8298380149",
-      plan: "Basic",
-      joinDate: "2023-05-20",
-      expiry: "2023-08-20",
-      status: "active",
-    },
-    {
-      id: 3,
-      name: "Kundan Jha",
-      email: "Kundan@example.com",
-      phone: "8298380149",
-      plan: "Ultimate",
-      joinDate: "2023-05-22",
-      expiry: "2024-05-22",
-      status: "active",
-    },
-    {
-      id: 4,
-      name: "Geetanjali Kashyap",
-      email: "Geetanjali@example.com",
-      phone: "8298380149",
-      plan: "Premium",
-      joinDate: "2023-04-10",
-      expiry: "2023-10-10",
-      status: "active",
-    },
-    {
-      id: 5,
-      name: "Mukesh Kumar",
-      email: "Mukesh@example.com",
-      phone: "8298380149",
-      plan: "Basic",
-      joinDate: "2023-03-15",
-      expiry: "2023-06-15",
-      status: "expired",
-    },
-
-  ]);
+  const [members, setMembers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("All Plans");
   const [selectedStatus, setSelectedStatus] = useState("All Status");
@@ -91,14 +39,19 @@ const MembersManagement = () => {
     setLoading(true);
     try {
       const res = await fetch("/api/members");
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
       const data = await res.json();
+      console.log("Fetched members:", data);
       setMembers(data);
     } catch (err) {
-      console.error("Failed to fetch members:", err);
+      console.error("Failed to fetch members:", err.message || err);
     } finally {
       setLoading(false);
     }
   };
+  
 
   const handleAddMember = async () => {
     try {
@@ -156,6 +109,7 @@ const MembersManagement = () => {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-8">
+        <span></span>
         <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
           Members Management
         </h2>
@@ -168,8 +122,8 @@ const MembersManagement = () => {
       </div>
 
       {/* Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="relative">
+      <div className="flex gap-4 mb-8">
+        <div className="relative w-1/3">
           <FiSearch className="absolute top-3 left-3 text-gray-400" />
           <input
             className="w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-800 text-white rounded-lg focus:ring-2 focus:ring-orange-500"
@@ -179,7 +133,7 @@ const MembersManagement = () => {
           />
         </div>
         <select
-          className="bg-gray-900 text-white rounded-lg px-3 py-2 border border-gray-800 focus:ring-2 focus:ring-orange-500"
+          className="bg-gray-900 w-[150px] text-white rounded-lg px-3 py-2 border border-gray-800 focus:ring-2 focus:ring-orange-500"
           value={selectedPlan}
           onChange={(e) => setSelectedPlan(e.target.value)}
         >
@@ -190,7 +144,7 @@ const MembersManagement = () => {
           ))}
         </select>
         <select
-          className="bg-gray-900 text-white rounded-lg px-3 py-2 border border-gray-800 focus:ring-2 focus:ring-orange-500"
+          className="bg-gray-900 w-[150px] text-white rounded-lg px-3 py-2 border border-gray-800 focus:ring-2 focus:ring-orange-500"
           value={selectedStatus}
           onChange={(e) => setSelectedStatus(e.target.value)}
         >
@@ -223,7 +177,7 @@ const MembersManagement = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-800">
-              {filteredMembers.map((member) => (
+              {filteredMembers && filteredMembers.map((member) => (
                 <tr
                   key={member.id}
                   className="hover:bg-gray-800/50 transition-colors"
@@ -248,11 +202,11 @@ const MembersManagement = () => {
                   <td className="px-6 py-4">
                     <div className="flex items-center text-sm text-gray-300">
                       <FiCalendar className="mr-1 text-orange-500" />
-                      {member.joinDate}
+                      {member.startDate}
                     </div>
                     <div className="flex items-center text-xs text-gray-400">
                       <FiCalendar className="mr-1 text-orange-500" />
-                      {member.expiry}
+                      {member.expiryDate}
                     </div>
                   </td>
                   <td className="px-6 py-4">

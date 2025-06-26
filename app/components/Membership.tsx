@@ -1,98 +1,116 @@
+"use client";
 import React from "react";
+import { motion } from "framer-motion";
+
+const plans = [
+  {
+    name: "Easy Start",
+    price: "₹700",
+    duration: "/ month",
+    regFee: "₹200 registration +",
+    features: [
+      "Access to all workout equipment",
+      "Free personal locker",
+      "Fitness & BMI assessment",
+    ],
+    exclude: ["Personal training not included"],
+    gradient: "from-gray-700 to-gray-800",
+  },
+  {
+    name: "Premium",
+    price: "₹1800",
+    duration: "/ 3 months",
+    features: [
+      "Includes all Easy Start benefits",
+      "4 Personal training sessions",
+      "Access to group classes (Zumba, HIIT, Yoga)",
+      "Diet consultation with expert",
+    ],
+    isPopular: true,
+    gradient: "from-orange-500 to-red-600",
+  },
+  {
+    name: "Ultimate",
+    price: "₹6000",
+    duration: "/ year",
+    features: [
+      "All Premium benefits",
+      "Unlimited personal training",
+      "VIP locker room & priority support",
+      "Spa & recovery access included",
+    ],
+    gradient: "from-gray-700 to-gray-800",
+  },
+];
 
 const Membership = () => {
   return (
-    <section id="membership" className="py-20 bg-black text-white">
+    <section id="membership" className="py-20 bg-black text-white relative z-10">
+      <div className="absolute top-0 left-0 w-full h-72 bg-gradient-to-r from-orange-500/5 to-red-500/5 blur-2xl opacity-10 -z-10" />
+
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-extrabold text-center mb-14 tracking-tight">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-4xl font-extrabold text-center mb-14 tracking-tight"
+        >
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
             Membership
           </span>{" "}
           Plans
-        </h2>
+        </motion.h2>
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Easy Start Plan */}
-          <div className="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-orange-500 hover:shadow-xl transition-all duration-300">
-            <h3 className="text-2xl font-semibold text-center mb-4">Easy Start</h3>
-            <div className="text-center text-white mb-6">
-              <p className="text-lg text-gray-300 mb-1">₹200 registration +</p>
-              <span className="text-4xl font-bold">₹700</span>
-              <span className="text-gray-400 text-sm"> / month</span>
-            </div>
-            <ul className="space-y-3 mb-8 text-sm">
-              <li className="flex items-center text-gray-300">
-                ✅ Access to all workout equipment
-              </li>
-              <li className="flex items-center text-gray-300">
-                ✅ Free personal locker
-              </li>
-              <li className="flex items-center text-gray-300">
-                ✅ Fitness & BMI assessment
-              </li>
-              <li className="flex items-center text-red-400">
-                ❌ Personal training not included
-              </li>
-            </ul>
-            <button className="w-full bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105">
-              Join Now
-            </button>
-          </div>
+          {plans.map((plan, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.2 }}
+              viewport={{ once: true }}
+              className={`relative bg-gray-900 p-8 rounded-2xl border overflow-hidden ${
+                plan.isPopular ? "border-orange-500 scale-[1.03]" : "border-gray-800"
+              } hover:border-orange-500 hover:shadow-xl transition-all duration-300`}
+            >
+              {plan.isPopular && (
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-orange-500 to-red-600 text-white px-3 py-1 text-xs font-bold rounded-bl-xl z-10">
+                  MOST POPULAR
+                </div>
+              )}
+              <h3 className="text-2xl font-semibold text-center mb-4">{plan.name}</h3>
 
-          {/* Premium Plan */}
-          <div className="bg-gray-900 overflow-hidden p-8 rounded-2xl border-2 border-orange-500 transform scale-[1.03] hover:scale-[1.05] transition duration-300 relative shadow-xl">
-            <div className="absolute top-0 right-0 bg-gradient-to-r from-orange-500 to-red-600 text-white px-3 py-1 text-xs font-bold rounded-bl-xl">
-              MOST POPULAR
-            </div>
-            <h3 className="text-2xl font-semibold text-center mb-4">Premium</h3>
-            <div className="text-center mb-6">
-              <span className="text-4xl font-bold">₹1800</span>
-              <span className="text-gray-400 text-sm"> / 3 months</span>
-            </div>
-            <ul className="space-y-3 mb-8 text-sm">
-              <li className="flex items-center text-gray-300">
-                ✅ Includes all Easy Start benefits
-              </li>
-              <li className="flex items-center text-gray-300">
-                ✅ 4 Personal training sessions
-              </li>
-              <li className="flex items-center text-gray-300">
-                ✅ Access to all group classes (Zumba, HIIT, Yoga)
-              </li>
-              <li className="flex items-center text-gray-300">
-                ✅ Diet consultation with expert
-              </li>
-            </ul>
-            <button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-md shadow-orange-400/30">
-              Join Now
-            </button>
-          </div>
+              <div className="text-center mb-6">
+                {plan.regFee && (
+                  <p className="text-lg text-gray-300 mb-1">{plan.regFee}</p>
+                )}
+                <span className="text-4xl font-bold">{plan.price}</span>
+                <span className="text-sm text-gray-400"> {plan.duration}</span>
+              </div>
 
-          {/* Ultimate Plan */}
-          <div className="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-orange-500 hover:shadow-xl transition-all duration-300">
-            <h3 className="text-2xl font-semibold text-center mb-4">Ultimate</h3>
-            <div className="text-center mb-6">
-              <span className="text-4xl font-bold">₹6000</span>
-              <span className="text-gray-400 text-sm"> / year</span>
-            </div>
-            <ul className="space-y-3 mb-8 text-sm">
-              <li className="flex items-center text-gray-300">
-                ✅ All Premium benefits
-              </li>
-              <li className="flex items-center text-gray-300">
-                ✅ Unlimited personal training
-              </li>
-              <li className="flex items-center text-gray-300">
-                ✅ VIP locker room & priority support
-              </li>
-              <li className="flex items-center text-gray-300">
-                ✅ Spa & recovery access included
-              </li>
-            </ul>
-            <button className="w-full bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105">
-              Join Now
-            </button>
-          </div>
+              <ul className="space-y-3 mb-8 text-sm">
+                {plan.features.map((item, i) => (
+                  <li key={i} className="flex items-center text-gray-300">
+                    ✅ {item}
+                  </li>
+                ))}
+                {plan.exclude?.map((item, i) => (
+                  <li key={i} className="flex items-center text-red-400">
+                    ❌ {item}
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                className={`w-full bg-gradient-to-r ${plan.gradient} hover:brightness-110 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 hover:scale-105 shadow-md ${
+                  plan.isPopular ? "shadow-orange-400/30" : ""
+                }`}
+              >
+                Join Now
+              </button>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

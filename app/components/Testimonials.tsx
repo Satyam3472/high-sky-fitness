@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -27,23 +29,35 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section id="testimonials" className="py-20 bg-black text-white">
+    <section id="testimonials" className="py-20 bg-black text-white relative z-10">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-extrabold text-center mb-14 tracking-tight">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-4xl font-extrabold text-center mb-14 tracking-tight"
+        >
           What Our{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
             Members Say
           </span>
-        </h2>
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
           {testimonials.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-md hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.2, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-md hover:shadow-orange-500/30 hover:-translate-y-1 transition-all duration-300"
             >
               <FaQuoteLeft className="text-orange-500 text-2xl mb-4" />
-              <p className="text-gray-300 mb-6 text-sm leading-relaxed">"{item.review}"</p>
+              <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                "{item.review}"
+              </p>
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-md font-semibold text-white">{item.name}</h4>
@@ -55,7 +69,7 @@ const Testimonials = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
