@@ -31,11 +31,11 @@ const featuresList = [
 
 const Features = () => {
   return (
-    <section id="advantages" className="py-20 bg-black">
+    <section id="advantages" className=" py-4 sm:py-20 bg-black">
       <div className="container mx-auto px-4">
         {/* Animated Heading */}
         <motion.h2
-          className="text-4xl font-extrabold text-center mb-14 text-white tracking-tight"
+          className="text-3xl sm:text-4xl font-extrabold text-center mb-6 sm:mb-14 text-white tracking-tight"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -47,11 +47,11 @@ const Features = () => {
           </span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-10 px-4">
           {featuresList.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-gray-900 border border-gray-800 p-6 rounded-xl text-center hover:shadow-xl hover:border-orange-500 transition-transform duration-300"
+              className="bg-gray-900 border border-gray-800 p-4 sm:p-6 rounded-xl text-center hover:shadow-xl hover:border-orange-500 transition-transform duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

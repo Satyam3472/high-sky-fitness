@@ -27,13 +27,13 @@ const imageGroups = [
 
 const Gallery = () => {
   return (
-    <div className="px-4 py-20 sm:px-16 bg-black" id="gallery">
+    <div className="px-4 py-10 sm:py-20 sm:px-16 bg-black" id="gallery">
       <motion.h2
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-4xl font-extrabold text-center mb-16 text-white tracking-tight"
+        className="text-3xl sm:text-4xl font-extrabold text-center mb-16 text-white tracking-tight"
       >
         Gym{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
@@ -41,9 +41,9 @@ const Gallery = () => {
         </span>
       </motion.h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-4 md:grid-cols-4 gap-1 sm:gap-8">
         {imageGroups.map((group, groupIndex) => (
-          <div key={groupIndex} className="flex flex-col gap-6">
+          <div key={groupIndex} className="flex flex-col gap-1 sm:gap-6">
             {group.map((src, imgIndex) => (
               <motion.img
                 key={imgIndex}

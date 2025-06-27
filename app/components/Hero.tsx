@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="relative bg-black overflow-hidden py-20 px-2" id="Home">
+    <section className="relative bg-black overflow-hidden py-2 sm:py-20 px-2" id="Home">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 left-1/2 w-1/2">
+      <div className="absolute inset-0 z-0 sm:left-1/2 w-full sm:w-1/2">
         <Image
           src="/assets/hero.png"
           alt="Fitness Background"
@@ -21,15 +21,6 @@ const Hero = () => {
 
       {/* Top Glow Gradient */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[140%] h-72 bg-gradient-to-br from-[#d0d0d075] to-[#3d3d3d87] opacity-20 blur-2xl animate-pulse z-0"></div>
-
-      {/* Floating Dumbbell (Optional) */}
-      <motion.img
-        src="/assets/dumbbell.png"
-        alt="dumbbell"
-        className="hidden md:block absolute w-28 right-10 top-32 z-10 opacity-80"
-        animate={{ y: [0, -15, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      />
 
       {/* Hero Content */}
       <div className="relative z-10 container mx-auto px-6 py-20 md:py-28 text-center md:text-left">
@@ -76,14 +67,6 @@ const Hero = () => {
               className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-xl shadow-xl shadow-orange-500/30 animate-pulse"
             >
               Get Started <FaArrowRight />
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 border border-gray-600 hover:border-orange-500 text-gray-100 hover:text-orange-400 font-semibold py-3 px-6 rounded-xl transition transform"
-            >
-              Learn More <FaInfoCircle />
             </motion.button>
           </motion.div>
         </motion.div>

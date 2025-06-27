@@ -45,7 +45,7 @@ const plans = [
 
 const Membership = () => {
   return (
-    <section id="membership" className="py-20 bg-black text-white relative z-10">
+    <section id="membership" className="py-10 sm:py-20 bg-black text-white relative z-10">
       <div className="absolute top-0 left-0 w-full h-72 bg-gradient-to-r from-orange-500/5 to-red-500/5 blur-2xl opacity-10 -z-10" />
 
       <div className="container mx-auto px-4">
@@ -54,7 +54,7 @@ const Membership = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl font-extrabold text-center mb-14 tracking-tight"
+          className="text-3xl sm:text-4xl font-extrabold text-center mb-6 sm:mb-14 text-white tracking-tight"
         >
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
             Membership
@@ -62,7 +62,7 @@ const Membership = () => {
           Plans
         </motion.h2>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="max-w-6xl mx-auto grid grid-cols-3 md:grid-cols-3 gap-10">
           {plans.map((plan, idx) => (
             <motion.div
               key={idx}
