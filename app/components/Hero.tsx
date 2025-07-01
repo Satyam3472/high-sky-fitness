@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { FaArrowRight, FaInfoCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { GYM_NAME } from "../assets/data";
 
 const Hero = () => {
   return (
@@ -50,7 +51,7 @@ const Hero = () => {
             transition={{ delay: 0.5 }}
           >
             Join{" "}
-            <span className="text-white font-semibold">High Sky Fitness</span>{" "}
+            <span className="text-white font-semibold">{GYM_NAME} Fitness</span>{" "}
             and unlock your full potential with elite coaching, immersive
             energy, and top-tier equipment.
           </motion.p>

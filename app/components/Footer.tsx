@@ -3,6 +3,7 @@ import { FaChevronRight, FaFacebook, FaInstagram, FaMapMarkerAlt, FaTwitter, FaY
 import { FaSquarePhone } from "react-icons/fa6";
 import { IoIosSend } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
+import { GYM_NAME } from "../assets/data";
 
 const Footer = () => {
   return (
@@ -12,7 +13,7 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-bold mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
-                HIGH SKY
+                {GYM_NAME.toUpperCase()}
               </span>{" "}
               FITNESS
             </h3>
@@ -67,7 +68,7 @@ const Footer = () => {
               {[
                 { icon: <FaMapMarkerAlt className="mt-1" />, text: "Bhubaneshwari Plaza, 3'rd Floor, Near Plaza Market, Telco Colony" },
                 { icon: <FaSquarePhone className="mt-1" />, text: "+91 9262806356" },
-                { icon: <IoMail className="mt-1" />, text: "info@highskyfitness.com" },
+                { icon: <IoMail className="mt-1" />, text: "info@gymbrofitness.com" },
               ].map((contact, index) => (
                 <li key={index} className="flex items-start">
                   {contact.icon}
@@ -102,7 +103,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
           <p>
-            &copy; {new Date().getFullYear()} High Sky Fitness. All rights reserved.
+            &copy; {new Date().getFullYear()} {GYM_NAME} Fitness. All rights reserved.
           </p>
           <div className="flex justify-center space-x-6 mt-4">
             {[

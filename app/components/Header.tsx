@@ -2,6 +2,8 @@
 "use client"
 import Image from 'next/image';
 import React, { useState } from 'react';
+import {GYM_NAME} from '../assets/data';
+
 
 const Header = ({ adminView, setAdminView }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +18,7 @@ const Header = ({ adminView, setAdminView }) => {
           <div className="h-10 w-auto sm:h-12">
             <Image 
               src="/assets/GYM_LOGO.png" 
-              alt="High Sky Fitness Logo" 
+              alt="GYM Logo" 
               width={100}
               height={100}
               className="h-10 w-auto sm:h-12"
@@ -24,7 +26,7 @@ const Header = ({ adminView, setAdminView }) => {
           </div>
           <div className="flex flex-col">
             <h1 className="text-xl sm:text-2xl font-extrabold text-white leading-none">
-              <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">HIGH SKY</span> FITNESS
+              <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">{GYM_NAME.toUpperCase()}</span> FITNESS
             </h1>
             <span className="text-xs sm:text-sm text-gray-300 italic">NO PAIN NO GAIN</span>
           </div>

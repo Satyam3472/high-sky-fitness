@@ -2,46 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const plans = [
-  {
-    name: "Easy Start",
-    price: "₹700",
-    duration: "/ month",
-    regFee: "₹200 registration +",
-    features: [
-      "Access to all workout equipment",
-      "Free personal locker",
-      "Fitness & BMI assessment",
-    ],
-    exclude: ["Personal training not included"],
-    gradient: "from-gray-700 to-gray-800",
-  },
-  {
-    name: "Premium",
-    price: "₹1800",
-    duration: "/ 3 months",
-    features: [
-      "Includes all Easy Start benefits",
-      "4 Personal training sessions",
-      "Access to group classes (Zumba, HIIT, Yoga)",
-      "Diet consultation with expert",
-    ],
-    isPopular: true,
-    gradient: "from-orange-500 to-red-600",
-  },
-  {
-    name: "Ultimate",
-    price: "₹6000",
-    duration: "/ year",
-    features: [
-      "All Premium benefits",
-      "Unlimited personal training",
-      "VIP locker room & priority support",
-      "Spa & recovery access included",
-    ],
-    gradient: "from-gray-700 to-gray-800",
-  },
-];
+import { plans } from "../assets/data";
 
 const Membership = () => {
   return (

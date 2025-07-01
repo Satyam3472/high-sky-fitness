@@ -16,6 +16,7 @@ import { BiHome } from "react-icons/bi";
 import { HiCurrencyRupee } from "react-icons/hi";
 import Image from "next/image";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
+import { GYM_NAME } from "../assets/data";
 
 const AdminDashboard = ({ setAdminView, adminView }) => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -33,7 +34,7 @@ const AdminDashboard = ({ setAdminView, adminView }) => {
             <div className="h-10 w-auto sm:h-12">
               <Image
                 src="/assets/GYM_LOGO.png" 
-                alt="High Sky Fitness Logo" 
+                alt="GYM Fitness Logo" 
                 width={100}
                 height={100}
                 className="h-10 w-auto sm:h-12"
@@ -41,7 +42,7 @@ const AdminDashboard = ({ setAdminView, adminView }) => {
             </div>
             { sidebarOpen && 
               <h1 className="text-l sm:text-xl flex-1 font-extrabold text-white leading-none">
-                <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">HIGH SKY</span> FITNESS
+                <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">{GYM_NAME.toUpperCase()}</span> FITNESS
               </h1>
             }
 

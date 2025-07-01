@@ -31,6 +31,10 @@ const MembersManagement = () => {
   const [loading, setLoading] = useState(false);
   const [newMember, setNewMember] = useState(initialForm);
 
+  const [selectedMember, setSelectedMember] = useState({});
+  const [showProfileModal, setShowProfileModal] = useState(false);
+
+
   useEffect(() => {
     fetchMembers();
   }, []);
@@ -182,13 +186,20 @@ const MembersManagement = () => {
                   key={member.id}
                   className="hover:bg-gray-800/50 transition-colors"
                 >
-                  <td className="px-6 py-4 flex items-center space-x-3">
-                    <div className="h-10 w-10 bg-gray-700 rounded-full flex items-center justify-center text-orange-500 font-bold">
-                      {member.name[0]}
-                    </div>
-                    <div>
-                      <div className="font-medium">{member.name}</div>
-                      <div className="text-xs text-gray-400">ID: {member.id}</div>
+                  <td className="px-6 py-4 whitespace-nowrap cursor-pointer">
+                    <div className="flex items-center" onClick={() => {
+                      setSelectedMember(member);
+                      setShowProfileModal(true);
+                    }}>
+                      <div className="flex-shrink-0 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center text-orange-500 font-bold">
+                        {member.name.charAt(0)}
+                      </div>
+                      <div className="ml-4">
+                        <div className="text-sm font-medium text-white underline hover:text-orange-400">
+                          {member.name}
+                        </div>
+                        <div className="text-xs text-gray-400">ID: {member.id}</div>
+                      </div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
@@ -319,6 +330,36 @@ const MembersManagement = () => {
           </div>
         </div>
       )}
+
+{showProfileModal && selectedMember && (
+  <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+    <div className="bg-gray-900 border border-gray-800 rounded-xl max-w-md w-full p-6 relative shadow-xl">
+      <button
+        className="absolute top-3 right-3 text-white hover:text-red-400"
+        onClick={() => setShowProfileModal(false)}
+      >
+        <IoMdClose size={22} />
+      </button>
+
+      <div className="flex flex-col items-center text-center">
+        <div className="h-20 w-20 bg-gray-700 rounded-full flex items-center justify-center text-2xl text-orange-500 font-bold mb-4">
+          {selectedMember.name.charAt(0)}
+        </div>
+        <h3 className="text-xl font-bold text-white mb-1">{selectedMember.name}</h3>
+        <p className="text-sm text-gray-400 mb-4">{selectedMember.email}</p>
+
+        <ul className="text-sm text-gray-300 space-y-2 w-full text-left">
+          <li><strong>Phone:</strong> {selectedMember.phone}</li>
+          <li><strong>Plan:</strong> {selectedMember.plan}</li>
+          <li><strong>Join Date:</strong> {selectedMember.joinDate || selectedMember.startDate}</li>
+          <li><strong>Expiry Date:</strong> {selectedMember.expiry || selectedMember.expiryDate}</li>
+          <li><strong>Status:</strong> {selectedMember.status}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

@@ -1,33 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { CgGym } from "react-icons/cg";
-import { FaUserCheck } from "react-icons/fa";
-import { FaTableCellsColumnLock } from "react-icons/fa6";
-import { IoFastFood } from "react-icons/io5";
 
-const featuresList = [
-  {
-    icon: <FaUserCheck />,
-    title: "Certified Trainers",
-    description: "Trained professionals with experience in Indian body types & goals",
-  },
-  {
-    icon: <CgGym />,
-    title: "18,000 sq.m. Space",
-    description: "Massive training area with premium equipment",
-  },
-  {
-    icon: <IoFastFood />,
-    title: "Indian Diet Plans",
-    description: "Customised vegetarian & non-veg meal plans for Indian lifestyles",
-  },
-  {
-    icon: <FaTableCellsColumnLock />,
-    title: "Secure Lockers",
-    description: "Safe and personal lockers available for all members",
-  },
-];
+import { featuresList, GYM_NAME } from "../assets/data";
 
 const Features = () => {
   return (
@@ -43,7 +18,7 @@ const Features = () => {
         >
           Why Choose{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
-            High Sky Fitness
+            {GYM_NAME} Fitness
           </span>
         </motion.h2>
 

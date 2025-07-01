@@ -8,7 +8,7 @@ const testimonials = [
     name: "Rahul Sharma",
     role: "IT Professional, Jamshedpur",
     review:
-      "High Sky Fitness transformed my routine. The certified trainers really know Indian body types. Highly recommended!",
+      "This GYM transformed my routine. The certified trainers really know Indian body types. Highly recommended!",
     rating: 5,
   },
   {
