@@ -30,7 +30,7 @@ const DashboardOverview = () => {
     {
       title: "Expiring Soon",
       value: "23",
-      change: "3",
+      change: "3%",
       trend: "up",
       icon: <FiUserPlus />,
     },
@@ -44,34 +44,35 @@ const DashboardOverview = () => {
   ];
 
   return (
-    <div className="px-6 min-h-screen text-white">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-4xl w-full text-center font-bold bg-gradient-to-r from-orange-500 to-red-600 text-transparent bg-clip-text">
+    <div className="min-h-screen px-4 sm:px-6 py-6 text-white">
+      {/* Heading */}
+      <div className="text-center mb-8">
+        <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-orange-500 to-red-600 text-transparent bg-clip-text">
           Gym Dashboard
         </h2>
       </div>
 
-      {/* Stat Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="group bg-gray-900 rounded-2xl border border-gray-800 p-6 shadow-sm hover:border-orange-500 hover:shadow-md transition-all duration-300"
+            className="group bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-sm hover:border-orange-500 hover:shadow-md transition-all duration-300"
           >
             <div className="flex items-start justify-between">
               <div>
-                <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
+                <h4 className="text-xs text-gray-400 font-semibold uppercase tracking-wide">
                   {stat.title}
                 </h4>
-                <p className="mt-2 text-3xl font-bold text-white">
+                <p className="mt-2 text-2xl sm:text-3xl font-bold text-white">
                   {stat.value}
                 </p>
               </div>
               <div
-                className={`text-2xl p-2 rounded-xl ${
+                className={`text-xl p-2 rounded-xl transition-all duration-300 ${
                   stat.trend === "up"
-                    ? "bg-green-900/30 text-green-400 group-hover:shadow-green-500/20"
-                    : "bg-red-900/30 text-red-400 group-hover:shadow-red-500/20"
+                    ? "bg-green-900/30 text-green-400 group-hover:shadow-green-400/20"
+                    : "bg-red-900/30 text-red-400 group-hover:shadow-red-400/20"
                 }`}
               >
                 {stat.icon}
@@ -93,6 +94,8 @@ const DashboardOverview = () => {
           </div>
         ))}
       </div>
+
+      {/* Revenue Chart */}
       <RevenueChartCard />
     </div>
   );
