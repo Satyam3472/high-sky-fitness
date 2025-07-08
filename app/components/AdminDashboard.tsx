@@ -3,6 +3,7 @@ import {
   FiUsers,
   FiPieChart,
   FiSettings,
+  FiUser,
 } from "react-icons/fi";
 import { HiCurrencyRupee } from "react-icons/hi";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
@@ -20,6 +21,13 @@ import { GYM_NAME } from "../assets/data";
 const AdminDashboard = ({ setAdminView, adminView }) => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const menu = {
+    'Dashboard' :<FiPieChart/>,
+    'Members' : <FiUser/>,
+    'Payments':<HiCurrencyRupee/>,
+    'Settings':<FiSettings/>
+  };
 
   return (
     <div className="flex flex-col md:flex-row h-screen w-screen bg-gray-100">
@@ -118,14 +126,13 @@ const AdminDashboard = ({ setAdminView, adminView }) => {
         </div>
         <button
             onClick={() => setAdminView(!adminView)}
-            className="text-center flex m-4 justify-center items-center gap-1 text-sm mt-2 px-3 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-md shadow hover:scale-105 transition"
+            className="text-center scale-75 sm:scale-90 md:scale-100 flex md:m-4 justify-center items-center gap-1 text-sm mt-2 px-3 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-md shadow hover:scale-105 transition"
           >
             <BiHome className="font-bold text-lg" />{" "}
             {sidebarOpen ? "Home" : null}
           </button>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 overflow-auto pt-4 pb-20 md:pb-0 px-4 md:px-6">
         {activeTab === "dashboard" && <DashboardOverview />}
         {activeTab === "members" && <MembersManagement />}
@@ -136,30 +143,16 @@ const AdminDashboard = ({ setAdminView, adminView }) => {
 
       <div className="fixed md:hidden bottom-0 w-full bg-black border-t border-gray-800 z-50">
         <div className="flex justify-around py-2 text-white">
-          <MobileTab
-            icon={<FiPieChart />}
-            label="Dashboard"
-            active={activeTab === "dashboard"}
-            onClick={() => setActiveTab("dashboard")}
-          />
-          <MobileTab
-            icon={<FiUsers />}
-            label="Members"
-            active={activeTab === "members"}
-            onClick={() => setActiveTab("members")}
-          />
-          <MobileTab
-            icon={<HiCurrencyRupee />}
-            label="Payments"
-            active={activeTab === "payments"}
-            onClick={() => setActiveTab("payments")}
-          />
-          <MobileTab
-            icon={<FiSettings />}
-            label="Settings"
-            active={activeTab === "settings"}
-            onClick={() => setActiveTab("settings")}
-          />
+          {
+            Object.keys(menu).map((item) =>           
+              <MobileTab
+              key={item}
+              icon={menu[item]}
+              label={item}
+              active={activeTab === item.toLowerCase()}
+              onClick={() => setActiveTab(item.toLowerCase())}
+            />)
+          }
         </div>
       </div>
     </div>
@@ -181,17 +174,18 @@ const NavItem = ({ icon, text, active, onClick, sidebarOpen }) => (
   </div>
 );
 
-// Mobile Bottom Tab
-const MobileTab = ({ icon, label, active, onClick }) => (
-  <button
-    onClick={onClick}
-    className={`flex flex-col items-center text-xs px-2 ${
-      active ? "text-orange-500" : "text-gray-400"
-    }`}
-  >
-    <div className="text-xl">{icon}</div>
-    <span>{label}</span>
-  </button>
-);
+const MobileTab = ({ icon, label, active, onClick }) => {
+  const baseStyles = "flex flex-col items-center text-xs px-2 py-1";
+  const activeStyles = "bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg shadow-xl";
+  const inactiveStyles = "text-gray-400 scale-90";
+  const buttonStyles = `${baseStyles} ${active ? activeStyles : inactiveStyles}`;
+  return (
+    <button onClick={onClick} className={buttonStyles}>
+      <div className="text-xl">{icon}</div>
+      <span>{label}</span>
+    </button>
+  );
+};
+
 
 export default AdminDashboard;

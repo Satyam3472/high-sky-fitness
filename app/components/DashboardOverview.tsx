@@ -11,6 +11,8 @@ import {
 } from "react-icons/ri";
 import RevenueChartCard from "./RevenueChartCard";
 
+import { revenueData, statusData, memberData, newVsReturningData } from "../assets/data";
+
 const DashboardOverview = () => {
   const stats = [
     {
@@ -44,35 +46,34 @@ const DashboardOverview = () => {
   ];
 
   return (
-    <div className="min-h-screen px-4 sm:px-6 py-6 text-white">
+    <div className="min-h-screen px-4 sm:px-6 text-white">
       {/* Heading */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-4 sm:mb-8">
         <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-orange-500 to-red-600 text-transparent bg-clip-text">
           Gym Dashboard
         </h2>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="group bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-sm hover:border-orange-500 hover:shadow-md transition-all duration-300"
+            className="group bg-gray-900 border border-gray-800 rounded-xl p-3 sm:p-4 hover:border-orange-500 hover:shadow-md transition-all duration-300"
           >
-            <div className="flex items-start justify-between">
-              <div>
-                <h4 className="text-xs text-gray-400 font-semibold uppercase tracking-wide">
+            <div className="flex items-start justify-between space-x-2">
+              <div className="min-w-0">
+                <h4 className="text-[0.65rem] xs:text-xs sm:text-sm text-gray-400 font-medium uppercase tracking-wide truncate">
                   {stat.title}
                 </h4>
-                <p className="mt-2 text-2xl sm:text-3xl font-bold text-white">
+                <p className="mt-1 text-base sm:text-xl font-bold text-white truncate">
                   {stat.value}
                 </p>
               </div>
               <div
-                className={`text-xl p-2 rounded-xl transition-all duration-300 ${
+                className={`flex-shrink-0 text-lg sm:text-xl p-1 sm:p-2 rounded-lg ${
                   stat.trend === "up"
-                    ? "bg-green-900/30 text-green-400 group-hover:shadow-green-400/20"
-                    : "bg-red-900/30 text-red-400 group-hover:shadow-red-400/20"
+                    ? "bg-green-900/30 text-green-400"
+                    : "bg-red-900/30 text-red-400"
                 }`}
               >
                 {stat.icon}
@@ -80,23 +81,22 @@ const DashboardOverview = () => {
             </div>
 
             <div
-              className={`flex items-center gap-1 mt-4 text-sm font-medium ${
+              className={`flex items-center gap-1 mt-2 text-xs sm:text-sm font-medium ${
                 stat.trend === "up" ? "text-green-400" : "text-red-400"
               }`}
             >
               {stat.trend === "up" ? (
-                <FiArrowUp className="text-base" />
+                <FiArrowUp className="text-xs sm:text-sm" />
               ) : (
-                <FiArrowDown className="text-base" />
+                <FiArrowDown className="text-xs sm:text-sm" />
               )}
-              <span>{stat.change}</span>
+              <span className="truncate">{stat.change}</span>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Revenue Chart */}
-      <RevenueChartCard />
+      <RevenueChartCard revenueData={revenueData} statusData={statusData} memberData={memberData} newVsReturningData={newVsReturningData} />
     </div>
   );
 };

@@ -23,7 +23,7 @@ const Membership = () => {
           Plans
         </motion.h2>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-3 md:grid-cols-3 gap-10">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
           {plans.map((plan, idx) => (
             <motion.div
               key={idx}
