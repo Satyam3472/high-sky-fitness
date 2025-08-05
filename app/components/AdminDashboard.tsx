@@ -51,9 +51,9 @@ const AdminDashboard = ({ setAdminView, adminView }) => {
               {sidebarOpen && (
                 <h1 className="text-l sm:text-xl flex-1 font-extrabold text-white leading-none">
                   <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-                    {GYM_NAME.toUpperCase()}
+                    {GYM_NAME.toUpperCase().split(' ')[0] + ' ' + GYM_NAME.toUpperCase().split(' ')[1]}
                   </span>{" "}
-                  FITNESS
+                  {GYM_NAME.toUpperCase().split(' ')[2]}
                 </h1>
               )}
             </div>

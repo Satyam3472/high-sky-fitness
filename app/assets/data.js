@@ -4,7 +4,7 @@ import { FaTableCellsColumnLock } from "react-icons/fa6";
 import { IoFastFood } from "react-icons/io5";
 
 
-export const GYM_NAME = 'High Sky';
+export const GYM_NAME = 'Tiger Hill Gym';
 
 export const MembersData = [
     {

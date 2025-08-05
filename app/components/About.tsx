@@ -20,11 +20,11 @@ const About = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               About{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">
-                {GYM_NAME} Fitness
+                {GYM_NAME}
               </span>
             </h2>
             <p className="text-base md:text-lg mb-4 text-gray-300 leading-relaxed">
-              {GYM_NAME} Fitness is a premier fitness destination located in the
+              {GYM_NAME} is a premier fitness destination located in the
               heart of the city, known for world-class equipment and elite
               coaching tailored for Indian fitness goals.
             </p>
